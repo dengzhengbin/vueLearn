@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="vue1">
+    <p>{{message}}</p>
+    <ol>
+      <todo-item v-for="item in list" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+    </ol>
+  </div>
+
+
+  <div id="vue2">
+    <p>{{foo}}</p>
+    <button v-on:click="foo='dzb'">cbange it</button>
+  </div>
+
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+  // vue自定义组件
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{todo.text}}</li>'
+  })
+
+  // vue 对象
+  var vue1 = new Vue({
+    el: '#vue1',
+    data: {
+      list: [
+        { id: 1, text: '香蕉' },
+        { id: 2, text: '苹果' },
+        { id: 3, text: '葡萄' }
+      ],
+      message: 'hello'
+    }
+  })
+
+  var obj = {
+    foo: 'foo'
+  }
+
+  Object.freeze(obj)
+
+  var vue2 = new Vue({
+    el: '#vue2',
+    data: obj
+  })
+
+  console.log('vue2.$data ==obj:', vue2.$data == obj);
+  console.log(vue2.$el == document.getElementById('vue2'));
+
+</script>
+
+</html>
+
+<!-- 
+1.const定义的变量不可以修改，而且必须初始化。
+2.var定义的变量可以修改，如果不初始化会输出undefined，不会报错。
+3.let是块级作用域，函数内部使用let定义后，对函数外部无影响。
+ -->
