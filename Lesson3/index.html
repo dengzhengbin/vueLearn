@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<body>
+  <!-- v-once指令 一次性插值 -->
+  <div id="vue1">
+    <p v-once>{{msg}}</p>
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+  </div>
+
+  <div>
+
+  </div>
+</body>
+
+<script>
+  var vue1 = new Vue({
+    el: '#vue1',
+    data: {
+      msg: 'hello dzb',
+      rawHtml: '<span style="color:red">this is my hose</span>'
+    }
+  })
+</script>
+
+
+</html>
